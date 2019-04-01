@@ -55,8 +55,7 @@ class Saved extends React.Component {
     }
 
     componentDidUpdate = () => {
-        const host = location.origin;
-        const socket = socketIOClient(host + ':3001/');
+        const socket = socketIOClient('https://gbooks-search.herokuapp.com/');
         console.log('socket')
         socket.on('deleted book', data => this.setState({ savedBook: data, showDeleted: true }));
     }
