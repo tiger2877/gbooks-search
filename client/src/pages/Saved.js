@@ -55,7 +55,7 @@ class Saved extends React.Component {
     }
 
     componentDidUpdate = () => {
-        const socket = socketIOClient('http://127.0.0.1:3001');
+        const socket = socketIOClient();
         socket.on('deleted book', data => this.setState({ savedBook: data, showDeleted: true }));
     }
 
