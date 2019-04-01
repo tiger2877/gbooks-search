@@ -1,18 +1,21 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import "./App.css";
+import Search from './pages/Search';
+import Saved from './pages/Saved';
 
 class App extends Component {
   render() {
+    console.log('public url: ', process.env.PUBLIC_URL);
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div>
+        <Router basename={`${process.env.PUBLIC_URL}`}>
+          <Switch>
+            <Route exact path="/" component={Search} />
+            <Route exact path="/saved" component={Saved} />
+            <Route component={Search} />
+          </Switch>
+        </Router>
       </div>
     );
   }

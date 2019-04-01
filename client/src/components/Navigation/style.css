@@ -1,0 +1,45 @@
+/* Default Styles */
+
+nav.navbar.navbar-default {
+    margin-bottom: 0;
+}
+
+.navbar-nav .nav-link {
+    text-transform: uppercase;
+}
+
+
+/* Home Navigation Styles */
+
+nav.nav-home {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    background-color: transparent !important;
+}
+
+nav.nav-home .navbar-brand {
+    color: #fff;
+    text-shadow: 5px 5px 20px #000;
+}
+
+nav.nav-home .navbar-nav .nav-link {
+    color: #663333;
+    text-shadow: 5px 5px 20px #000;
+}
+
+nav.nav-home .navbar-nav .nav-link.active {
+    color: #fff !important;
+}
+
+nav.nav-home img {
+    height: 40px;
+    width: auto;
+}
+
+.text-brown {
+    color: #663333;
+}

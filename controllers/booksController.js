@@ -3,7 +3,7 @@ const db = require('../models');
 // Defining methods for the booksController
 module.exports = {
     getBooks: function (req, res) {
-        db.Books
+        db.Book
             .find(req.query)
             .sort({ date: -1 })
             .then(dbModel => res.json(dbModel))
@@ -16,7 +16,9 @@ module.exports = {
     //         .catch(err => res.status(422).json(err));
     // },
     saveBook: function (req, res) {
-        db.Books
+        console.log('this is req.body');
+        console.log(req.body);
+        db.Book
             .create(req.body)
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
@@ -28,7 +30,7 @@ module.exports = {
     //         .catch(err => res.status(422).json(err));
     // },
     deleteBook: function (req, res) {
-        db.Books
+        db.Book
             .findById({ _id: req.params.id })
             .then(dbModel => dbModel.remove())
             .then(dbModel => res.json(dbModel))
