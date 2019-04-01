@@ -64,7 +64,8 @@ class Search extends React.Component {
     }
 
     componentDidUpdate = () => {
-        const socket = socketIOClient('http://localhost:3001/');
+        const host = location.origin;
+        const socket = socketIOClient(host + ':3001/');
         console.log('socket');
         socket.on('saved book', data => this.setState({savedBook: data, showSaved: true}));
     }
