@@ -8,19 +8,19 @@ export default {
         return axios.get(url + query);
     },
     // Gets all saved books
-    getSavedBooks: function () {
+    getSavedBooks: () => {
         return axios.get("/api/books");
     },
     // Gets the book with the given id
-    getBook: function (id) {
+    getBook: id => {
         return axios.get('/api/books/' + id);
     },
     // Deletes the book with the given id
-    deleteBook: function (id) {
+    deleteBook: id => {
         return axios.delete('/api/books/' + id);
     },
     // Saves a book to the database
-    saveBook: function (bookData) {
+    saveBook: bookData => {
         return axios.post('/api/books', bookData);
     }
 

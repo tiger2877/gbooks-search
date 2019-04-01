@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
-const http = require('http').createServer(app);
-const io = require('socket.io')(http);
+const server = require('http').createServer(app);
+const io = require('socket.io')(server);
 
 const mongoose = require('mongoose');
 const routes = require('./routes');
@@ -27,11 +27,11 @@ app.use(routes);
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/googlebooks');
 
-// io.on('connection', function (socket) {
-//   console.log('a user connected');
-// });
+io.on('connection', function (socket) {
+  console.log('a user connected');
+});
 
 // Start the API server
-http.listen(PORT, function () {
+server.listen(PORT, function () {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
 });

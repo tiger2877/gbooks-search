@@ -23,7 +23,6 @@ class Saved extends React.Component {
     getBooks = () => {
         API.getSavedBooks()
             .then(res => {
-                console.log(res);
                 this.setState({
                     books: res.data
                 })
@@ -33,11 +32,8 @@ class Saved extends React.Component {
     }
 
     handleDelete(id) {
-        console.log('Handle Delete');
-        console.log(id);
         API.deleteBook(id)
             .then(res => {
-                console.log(res);
                 this.getBooks();
             }).catch(err => {
                 console.log(err);
@@ -47,7 +43,6 @@ class Saved extends React.Component {
     componentDidMount = () => {
         API.getSavedBooks()
             .then(res => {
-                console.log(res);
                 this.getBooks();
             }).catch(err => {
                 console.log(err);
