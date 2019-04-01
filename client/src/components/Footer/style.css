@@ -1,0 +1,14 @@
+.site-footer {
+    padding: 15px;
+    mask-image: gradient(linear, left 25%, left top, from(rgba(0, 0, 0, 1)), to(rgba(0, 0, 0, 0)));
+    -webkit-mask-image: -webkit-gradient(linear, left 25%, left top, from(rgba(0, 0, 0, 1)), to(rgba(0, 0, 0, 0)));
+}
+
+a,
+a:visited,
+a:focus,
+a:active,
+a:hover {
+    color: #000;
+    text-decoration: none !important;
+}

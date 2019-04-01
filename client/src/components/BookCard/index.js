@@ -15,19 +15,11 @@ class BookCard extends React.Component {
                             <Col sm={8}>
                                 <Card.Title>{this.props.book.title}</Card.Title>
                                 <Card.Subtitle className="mb-2 text-muted">
-                                    {this.props.book.authors.map((a, i) => {
-                                        let author;
-                                            if (this.props.book.authors.length - 1 === i) {
-                                                author = a;
-                                            }else{
-                                                author = a + ', ';
-                                            }
-                                            return author;
-                                    })}
+                                    {this.props.book.authors ? this.props.book.authors.join(', ') : 'N/A'}
                                 </Card.Subtitle>
                             </Col>
                             <Col sm={4} className="text-right">
-                                <Button variant="secondary" type="button" className="pr-2">View</Button>
+                                <Button variant="secondary" type="button" className="pr-2" href={this.props.book.previewLink} target="_blank">View</Button>
                                 <Button variant="secondary" type="button" onClick={() => this.props.onSelect()}>Save</Button>
                             </Col>
                         </Row>
@@ -41,7 +33,6 @@ class BookCard extends React.Component {
                                 </Card.Text>
                             </Col>
                         </Row>
-                        <Card.Link href={this.props.book.previewLink}>Preview Link</Card.Link>
                     </Card.Body>
                 </Card>
             </Col>

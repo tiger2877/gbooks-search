@@ -5,8 +5,7 @@ import './style.css';
 class Banner extends React.Component {
     render() {
         return (
-            // <Jumbotron style={{ backgroundImage: "url(./images/books.jpg)" }} className="text-center">
-            <Jumbotron className="text-center">
+            <Jumbotron style={{ backgroundImage: "url(./images/books.jpg)" }} className="text-center">
                 {this.props.children}
             </Jumbotron>
         );

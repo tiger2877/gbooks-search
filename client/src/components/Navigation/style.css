@@ -27,7 +27,7 @@ nav.nav-home .navbar-brand {
 }
 
 nav.nav-home .navbar-nav .nav-link {
-    color: #663333;
+    color: #D3D3D3;
     text-shadow: 5px 5px 20px #000;
 }
 
@@ -41,5 +41,5 @@ nav.nav-home img {
 }
 
 .text-brown {
-    color: #663333;
+    color: #D3D3D3;
 }

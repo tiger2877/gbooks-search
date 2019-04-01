@@ -25,7 +25,7 @@ class Navigation extends React.Component {
                             </Nav.Link>
                             <Nav.Link
                                 href="/saved"
-                                className={window.location.pathname === "/game" ? "nav-link active" : "nav-link"}
+                                className={window.location.pathname === "/saved" ? "nav-link active" : "nav-link"}
                             >
                                 Saved
                             </Nav.Link>

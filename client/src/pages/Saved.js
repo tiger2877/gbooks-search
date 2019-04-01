@@ -1,4 +1,5 @@
 import React from 'react';
+import socketIOClient from 'socket.io-client';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -7,12 +8,15 @@ import API from '../utils/API';
 import Navigation from '../components/Navigation';
 import Banner from '../components/Banner';
 import SavedBookCard from '../components/SavedBookCard';
+import VerticallyCenteredModal from '../components/VerticallyCenteredModal';
 
 class Saved extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            books: []
+            books: [],
+            deletedBook: "",
+            showDeleted: false
         }
     }
 
@@ -23,16 +27,6 @@ class Saved extends React.Component {
                 this.setState({
                     books: res.data
                 })
-            }).catch(err => {
-                console.log(err);
-            });
-    }
-
-    componentDidMount = () => {
-        API.getSavedBooks()
-            .then(res => {
-                console.log(res);
-                this.getBooks();
             }).catch(err => {
                 console.log(err);
             });
@@ -50,7 +44,23 @@ class Saved extends React.Component {
             });
     }
 
+    componentDidMount = () => {
+        API.getSavedBooks()
+            .then(res => {
+                console.log(res);
+                this.getBooks();
+            }).catch(err => {
+                console.log(err);
+            });
+    }
+
+    componentDidUpdate = () => {
+        const socket = socketIOClient('http://127.0.0.1:3001');
+        socket.on('deleted book', data => this.setState({ savedBook: data, showDeleted: true }));
+    }
+
     render() {
+        const closeDeleted = () => this.setState({ showDeleted: false });
         return (
             <div>
                 <Navigation />
@@ -78,6 +88,13 @@ class Saved extends React.Component {
                         </Row>
                     </Container>
                 </div>
+                <VerticallyCenteredModal
+                    show={this.state.showDeleted}
+                    onHide={closeDeleted}
+                    heading="Deleted!"
+                >
+                    ({this.state.savedBook}) was successfuly deleted.
+                </VerticallyCenteredModal>
             </div>
         );
     };
