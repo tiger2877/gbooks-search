@@ -63,7 +63,7 @@ class Search extends React.Component {
     }
 
     componentDidUpdate = () => {
-        const socket = socketIOClient();
+        const socket = socketIOClient({ secure: true });
         socket.on('saved book', data => this.setState({savedBook: data, showSaved: true}));
     }
 
