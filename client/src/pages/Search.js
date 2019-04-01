@@ -20,7 +20,8 @@ class Search extends React.Component {
             books: [],
             book: "",
             savedBook: "",
-            showSaved: false
+            showSaved: false,
+            showError: false
         }
     }
 
@@ -60,6 +61,7 @@ class Search extends React.Component {
                 console.log(res);
             }).catch(err => {
                 console.log(err);
+                this.setState({showError: true});
             });
     }
 
@@ -69,7 +71,7 @@ class Search extends React.Component {
     }
 
     render() {
-        const closeSaved = () => this.setState({ showSaved: false });
+        const closeModal = () => this.setState({ showSaved: false, showError: false });
         return (
             <div>
                 <Navigation />
@@ -114,10 +116,17 @@ class Search extends React.Component {
                 </div>
                 <VerticallyCenteredModal
                     show={this.state.showSaved}
-                    onHide={closeSaved}
+                    onHide={closeModal}
                     heading="Saved!"
                 >
                     ({this.state.savedBook}) was successfuly saved.
+                </VerticallyCenteredModal>
+                <VerticallyCenteredModal
+                    show={this.state.showError}
+                    onHide={closeModal}
+                    heading="Error!"
+                >
+                    This book is already saved. Please choose another book to save.
                 </VerticallyCenteredModal>
             </div>
         );
