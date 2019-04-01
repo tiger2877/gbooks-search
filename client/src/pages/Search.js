@@ -1,4 +1,5 @@
 import React from 'react';
+import socketIOClient from 'socket.io-client';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -9,6 +10,7 @@ import API from '../utils/API';
 import Navigation from '../components/Navigation';
 import Banner from '../components/Banner';
 import BookCard from '../components/BookCard';
+import VerticallyCenteredModal from '../components/VerticallyCenteredModal';
 
 class Search extends React.Component {
     constructor(props) {
@@ -16,7 +18,9 @@ class Search extends React.Component {
         this.state = {
             query: "",
             books: [],
-            book: ""
+            book: "",
+            savedBook: "",
+            showSaved: false
         }
     }
 
@@ -59,7 +63,13 @@ class Search extends React.Component {
             });
     }
 
+    componentDidUpdate = () => {
+        const socket = socketIOClient('http://127.0.0.1:3001');
+        socket.on('saved book', data => this.setState({savedBook: data, showSaved: true}));
+    }
+
     render() {
+        const closeSaved = () => this.setState({ showSaved: false });
         return (
             <div>
                 <Navigation />
@@ -72,7 +82,7 @@ class Search extends React.Component {
                     </Banner>
                     <Container>
                         <Row>
-                            <Col sm={12} className="text-center">
+                            <Col sm={12} className="text-left">
                                 <h2>Book Search</h2>
                                 <Form onSubmit={this.handleSubmit}>
                                     <Form.Group controlId="formSearch">
@@ -96,6 +106,13 @@ class Search extends React.Component {
                         </Row>
                     </Container>
                 </div>
+                <VerticallyCenteredModal
+                    show={this.state.showSaved}
+                    onHide={closeSaved}
+                    heading="Saved!"
+                >
+                    ({this.state.savedBook}) was successfuly saved.
+                </VerticallyCenteredModal>
             </div>
         );
     };
