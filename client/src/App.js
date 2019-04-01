@@ -7,7 +7,6 @@ import Footer from './components/Footer';
 
 class App extends Component {
   render() {
-    console.log('public url: ', process.env.PUBLIC_URL);
     return (
       <div>
         <Router basename={`${process.env.PUBLIC_URL}`}>

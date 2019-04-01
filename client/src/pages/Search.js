@@ -39,7 +39,6 @@ class Search extends React.Component {
         event.preventDefault();
         API.getBooks(this.state.query)
             .then(res => {
-                console.log(res.data.items);
                 this.setState({ books: res.data.items });
             }).catch(err => {
                 console.log(err);
@@ -54,8 +53,7 @@ class Search extends React.Component {
             image: data.imageLinks.thumbnail,
             link: data.previewLink
         };
-        console.log('Handle Save');
-        console.log(book);
+        
         API.saveBook(book)
             .then(res => {
                 console.log(res);
