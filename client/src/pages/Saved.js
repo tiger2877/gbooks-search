@@ -3,12 +3,12 @@ import socketIOClient from 'socket.io-client';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-// import { Link } from 'react-router-dom';
 import API from '../utils/API';
 import Navigation from '../components/Navigation';
 import Banner from '../components/Banner';
-import SavedBookCard from '../components/SavedBookCard';
+import BookCard from '../components/BookCard';
 import VerticallyCenteredModal from '../components/VerticallyCenteredModal';
+import server from '../config/config';
 
 class Saved extends React.Component {
     constructor(props) {
@@ -55,8 +55,7 @@ class Saved extends React.Component {
     }
 
     componentDidUpdate = () => {
-        const socket = socketIOClient('http://gbooks-search.herokuapp.com', { secure: true });
-        console.log('socket')
+        const socket = socketIOClient(server,{ secure: true });
         socket.on('deleted book', data => this.setState({ savedBook: data, showDeleted: true }));
     }
 
@@ -80,9 +79,14 @@ class Saved extends React.Component {
                         </Row>
                         <Row>
                             {this.state.books.map((book, index) =>
-                                <SavedBookCard
+                                <BookCard
                                     key={index}
-                                    book={book}
+                                    title={book.title}
+                                    authors={book.authors}
+                                    link={book.link}
+                                    image={book.image}
+                                    description={book.description}
+                                    buttonText="Delete"
                                     onSelect={() => this.handleDelete(book._id)}
                                 />
                             )}

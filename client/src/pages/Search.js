@@ -5,12 +5,12 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-// import { Link } from 'react-router-dom';
 import API from '../utils/API';
 import Navigation from '../components/Navigation';
 import Banner from '../components/Banner';
 import BookCard from '../components/BookCard';
 import VerticallyCenteredModal from '../components/VerticallyCenteredModal';
+import server from '../config/config';
 
 class Search extends React.Component {
     constructor(props) {
@@ -20,7 +20,8 @@ class Search extends React.Component {
             books: [],
             book: "",
             savedBook: "",
-            showSaved: false
+            showSaved: false,
+            showError: false
         }
     }
 
@@ -60,17 +61,17 @@ class Search extends React.Component {
                 console.log(res);
             }).catch(err => {
                 console.log(err);
+                this.setState({showError: true});
             });
     }
 
     componentDidUpdate = () => {
-        const socket = socketIOClient('http://gbooks-search.herokuapp.com', { secure: true });
-        console.log('socket');
+        const socket = socketIOClient(server,{ secure: true });
         socket.on('saved book', data => this.setState({savedBook: data, showSaved: true}));
     }
 
     render() {
-        const closeSaved = () => this.setState({ showSaved: false });
+        const closeModal = () => this.setState({ showSaved: false, showError: false });
         return (
             <div>
                 <Navigation />
@@ -101,6 +102,12 @@ class Search extends React.Component {
                                 <BookCard
                                     key={index}
                                     book={book.volumeInfo}
+                                    title={book.volumeInfo.title}
+                                    authors={book.volumeInfo.authors}
+                                    link={book.volumeInfo.previewLink}
+                                    image={book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : ""}
+                                    description={book.volumeInfo.description}
+                                    buttonText="Save"
                                     onSelect={() => this.handleSave(book.volumeInfo)}
                                 />
                             )}
@@ -109,10 +116,17 @@ class Search extends React.Component {
                 </div>
                 <VerticallyCenteredModal
                     show={this.state.showSaved}
-                    onHide={closeSaved}
+                    onHide={closeModal}
                     heading="Saved!"
                 >
                     ({this.state.savedBook}) was successfuly saved.
+                </VerticallyCenteredModal>
+                <VerticallyCenteredModal
+                    show={this.state.showError}
+                    onHide={closeModal}
+                    heading="Error!"
+                >
+                    This book is already saved. Please choose another book to save.
                 </VerticallyCenteredModal>
             </div>
         );
