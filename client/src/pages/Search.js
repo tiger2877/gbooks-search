@@ -64,7 +64,7 @@ class Search extends React.Component {
     }
 
     componentDidUpdate = () => {
-        const socket = socketIOClient('https://gbooks-search.herokuapp.com', { secure: true });
+        const socket = socketIOClient('http://gbooks-search.herokuapp.com', { secure: true });
         console.log('socket');
         socket.on('saved book', data => this.setState({savedBook: data, showSaved: true}));
     }
