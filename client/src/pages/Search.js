@@ -10,6 +10,7 @@ import Navigation from '../components/Navigation';
 import Banner from '../components/Banner';
 import BookCard from '../components/BookCard';
 import VerticallyCenteredModal from '../components/VerticallyCenteredModal';
+import server from '../config/config';
 
 class Search extends React.Component {
     constructor(props) {
@@ -63,7 +64,7 @@ class Search extends React.Component {
     }
 
     componentDidUpdate = () => {
-        const socket = socketIOClient({ secure: true });
+        const socket = socketIOClient(server,{ secure: true });
         socket.on('saved book', data => this.setState({savedBook: data, showSaved: true}));
     }
 
