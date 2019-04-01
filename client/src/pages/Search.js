@@ -5,7 +5,6 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-// import { Link } from 'react-router-dom';
 import API from '../utils/API';
 import Navigation from '../components/Navigation';
 import Banner from '../components/Banner';
@@ -100,6 +99,12 @@ class Search extends React.Component {
                                 <BookCard
                                     key={index}
                                     book={book.volumeInfo}
+                                    title={book.volumeInfo.title}
+                                    authors={book.volumeInfo.authors}
+                                    link={book.volumeInfo.previewLink}
+                                    image={book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : ""}
+                                    description={book.volumeInfo.description}
+                                    buttonText="Save"
                                     onSelect={() => this.handleSave(book.volumeInfo)}
                                 />
                             )}
