@@ -10,7 +10,7 @@ class Navigation extends React.Component {
             <Navbar bg="white" expand="lg" className="nav-home">
                 <Container>
                     <Navbar.Brand href="/">
-                        Google Books
+                        <img src="/images/gbooks-search-logo.png" alt="gBooks Search" />
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav">
                         <i className="fas fa-bars text-white"></i>

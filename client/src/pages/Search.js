@@ -76,21 +76,21 @@ class Search extends React.Component {
                 <div className="pb-5">
                     <Banner style={{ backgroundImage: "url(/images/books.jpg)" }}>
                         <Container>
-                            <h1>(React) Google Books Search</h1>
+                            <h1><i className="fab fa-react"></i> <i className="fab fa-google"></i> Books Search</h1>
                             <h6>Search for and Save Books of Interest</h6>
                         </Container>
                     </Banner>
                     <Container>
                         <Row>
                             <Col sm={12} className="text-left">
-                                <h2>Book Search</h2>
+                                <h2><i className="fas fa-book-dead"></i> BOOK SEARCH</h2>
                                 <Form onSubmit={this.handleSubmit}>
                                     <Form.Group controlId="formSearch">
                                         <Form.Label>Book</Form.Label>
                                         <Form.Control type="text" placeholder="What book are you looking for?" name="query" onChange={this.handleInputChange}/>
                                     </Form.Group>
                                     <Button variant="secondary" type="submit">
-                                        Submit
+                                        <i className="fas fa-search"></i>
                                     </Button>
                                 </Form>
                             </Col>
@@ -105,7 +105,7 @@ class Search extends React.Component {
                                     link={book.volumeInfo.previewLink}
                                     image={book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : ""}
                                     description={book.volumeInfo.description}
-                                    buttonText="Save"
+                                    buttonText="fa-save"
                                     onSelect={() => this.handleSave(book.volumeInfo)}
                                 />
                             )}

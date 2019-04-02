@@ -62,14 +62,14 @@ class Saved extends React.Component {
                 <div className="pb-5">
                     <Banner style={{ backgroundImage: "url(/images/books.jpg)" }}>
                         <Container>
-                            <h1>(React) Google Books Search</h1>
+                            <h1><i className="fab fa-react"></i> <i className="fab fa-google"></i> Books Search</h1>
                             <h6>Search for and Save Books of Interest</h6>
                         </Container>
                     </Banner>
                     <Container>
                         <Row>
                             <Col sm={12} className="text-left">
-                                <h2>Saved Books</h2>
+                                <h2><i className="fas fa-save"></i> SAVED BOOKS</h2>
                             </Col>
                         </Row>
                         <Row>
@@ -81,7 +81,7 @@ class Saved extends React.Component {
                                     link={book.link}
                                     image={book.image}
                                     description={book.description}
-                                    buttonText="Delete"
+                                    buttonText="fa-trash-alt"
                                     onSelect={() => this.handleDelete(book._id)}
                                 />
                             )}

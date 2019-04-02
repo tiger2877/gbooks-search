@@ -19,8 +19,8 @@ class BookCard extends React.Component {
                                 </Card.Subtitle>
                             </Col>
                             <Col sm={4} className="text-right">
-                                <Button variant="secondary" type="button" className="pr-2" href={this.props.link ? this.props.link: '#'} target="_blank">View</Button>
-                                <Button variant="secondary" type="button" onClick={() => this.props.onSelect()}>{this.props.buttonText}</Button>
+                                <Button variant="secondary" type="button" className="pr-2" href={this.props.link ? this.props.link : '#'} target="_blank"><i className="fas fa-eye"></i></Button>
+                                        <Button variant="secondary" type="button" onClick={() => this.props.onSelect()}><i className={`fas ${this.props.buttonText}`}></i></Button>
                             </Col>
                         </Row>
                         <Row>
